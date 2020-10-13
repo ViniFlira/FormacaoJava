@@ -71,7 +71,7 @@ public abstract class Conta {
 
 	}
 
-	public Cliente getTitulas() {
+	public Cliente getTitular() {
 		return this.titular;
 	}
 
