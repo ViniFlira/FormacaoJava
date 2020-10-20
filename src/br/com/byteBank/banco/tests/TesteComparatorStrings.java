@@ -3,6 +3,7 @@ package br.com.byteBank.banco.tests;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 import br.com.byteBank.banco.domain.Cliente;
 import br.com.byteBank.banco.domain.Conta;
@@ -43,31 +44,13 @@ public class TesteComparatorStrings {
 		lista.add(cc3);
 		lista.add(cc4);
 
-		for (Conta conta : lista) {
-			System.out.println(conta + ", " + conta.getTitular().getNome());
-		}
+		lista.forEach((conta) -> System.out.println(conta + ", " + conta.getTitular().getNome()));
 
 		System.out.println("------X------");
-		lista.sort(new TitularDaContaComparator());
 
-		for (Conta conta : lista) {
-			System.out.println(conta + ", " + conta.getTitular().getNome());
-		}
-	}
+		lista.sort((c1, c2) -> c1.getTitular().getNome().compareTo(c2.getTitular().getNome()));
 
-}
-
-class TitularDaContaComparator implements Comparator<Conta> {
-
-	@Override
-	public int compare(Conta c1, Conta c2) {
-
-		// Coletando os Strings que eu quero comparar.
-		String nomeC1 = c1.getTitular().getNome();
-		String nomeC2 = c2.getTitular().getNome();
-
-		// Utilizando o método compareTo que já existe na clase String.
-		return nomeC1.compareTo(nomeC2);
+		lista.forEach((conta) -> System.out.println(conta + ", " + conta.getTitular().getNome()));
 	}
 
 }

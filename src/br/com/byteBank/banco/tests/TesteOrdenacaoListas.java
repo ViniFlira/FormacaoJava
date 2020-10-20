@@ -1,7 +1,6 @@
 package br.com.byteBank.banco.tests;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import br.com.byteBank.banco.domain.Conta;
@@ -30,26 +29,14 @@ public class TesteOrdenacaoListas {
 		lista.add(cc3);
 		lista.add(cc4);
 
-		for (Conta conta : lista) {
-			System.out.println(conta);
-		}
+		lista.forEach((conta) -> System.out.println(conta));
 
-		lista.sort(new NumeroDaContaComparator());
+		lista.sort((c1, c2) -> Integer.compare(c1.getNumero(), c2.getNumero()));
 
 		System.out.println("-----------x-----------");
 
-		for (Conta conta : lista) {
-			System.out.println(conta);
-		}
+		lista.forEach((conta) -> System.out.println(conta));
 
 	}
 
-}
-
-class NumeroDaContaComparator implements Comparator<Conta> {
-
-	@Override
-	public int compare(Conta c1, Conta c2) {
-		return Integer.compare(c1.getNumero(), c2.getNumero());
-	}
 }
